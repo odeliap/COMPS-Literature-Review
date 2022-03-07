@@ -1,0 +1,348 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{minted}
+\usepackage{xcolor, soul}
+\sethlcolor{lightgray}
+\usepackage{hyperref}
+
+\title{Literature Review: Building a Fund for Cryptocurrencies with Machine Learning}
+\author{Odelia Putterman}
+
+\begin{document}
+\maketitle
+
+\section{Problem Context}
+\label{sec:context}
+
+Investing is a means by which people can grow their money exponentially, but it also holds the potential for significant loss, especially in the context of day trading.
+
+\subsection{Index Funds: Explained}
+\label{sec:indexfunds}
+
+As it stands, it's difficult, if not impossible, to predict the exact performance of individual stocks. As such, people invest in index funds, collections of stocks which follow some set of rules for construction, to mirror the whole market rather than a particular holding. Such funds are generally mutually pooled, with the stock holdings shared across many holders. \\
+
+Money that goes into the fund is invested in all the stocks the fund holds, growing the diversification of the fund and minimizing its dependence on individual stock performance. Further, index funds are periodically re-balanced to offset losses and risk, and companies are sold once they leave these predefined rules or parameters discussed.
+
+\subsection{Cryptocurrencies: A Unique Opportunity and Approach}
+\label{sec:cryptocurrencies}
+
+Index funds are generally constructed using fundamental measures of a company (aka fundamentals), such as cash flow, sales, and dividends. Cryptocurrencies, however, have none of these intrinsic metrics. Since the cryptocurrencies themselves are a currency rather than a materialized product, there are no sales or dividends to be found. Their only measure is price. Accordingly, any approach to creating and maintaining a cryptocurrency index fund must be revolutionary in nature. \\
+
+Cryptocurrencies are incredibly volatile, making re-balancing especially important. Their instability also offers a unique opportunity for leveraging their turning points to optimize gains if high-accuracy price prediction can be achieved. If we could predict cryptocurrency prices in advance, we could leverage this knowledge to maximize gains while keeping a sense of security with the breadth of the fund. \\
+
+Typically, index funds are rebalanced on a consistent, preset schedule, such as the third Friday at the end of each calendar quarterly. But, what if we could predict cryptocurrency prices to decide how and when to rebalance such a cryptocurrency fund instead? If this succeeded, the results would be revolutionary in nature and a first-of-its-kind for maintaining a balanced, high-return cryptocurrency fund. \\
+
+People have previously attempted to predict the behavior of cryptocurrencies with some success. I aim to follow in their steps with a slightly different approach and following implementations. Such prior work is discussed below under \hyperref[sec:priorwork]{Prior Work}.
+
+\subsection{Ethical Considerations}
+\label{sec:ethical}
+
+This field is endlessly exciting, but there are many ethical considerations that should be discussed and not overlooked.
+
+\subsubsection{Obligation to Investors}
+\label{sec:obligations}
+
+As an index fund manager, you hold a moral obligation to your holders to (at least try to) grow their investment. Cryptocurrency price prediction carries inherit risk. In this proposed cryptocurrency fund, if you wrongly predict the performance of a cryptocurrency stock, you risk misallocating cryptocurrency stocks and, in turn, losing investor money. Since this fund is reliant on accurate cryptocurrency price prediction which will be, at best, relatively accurate, investors should be forewarned about the risks of investing.
+
+\subsubsection{Investing}
+\label{sec:investing}
+
+First off, we must consider the ethical implications of investing itself. It's famously said that ``the rich get richer and the poor get poorer". Albeit peoples' ability to turn a little into a lot, it's infinitely harder to become wealthy if you're starting from little and boundlessly easier to become wealthier if you're already wealthy. This leads us to ask, \textit{is investing fair?} \\
+
+The stock market is not a fair playing field. Because of its inherent compound nature, it favors those who start with more and exponentially returns the more you invest. Moreover, those elite investors have access to tools not readily available to the average person, such as personal wealth managers and access to more exclusive, ``high buy-in" funds. \\
+
+The reality is, we live in a capitalist society. Though it isn't fair that some people start off with more than others, it is a part of the system we subscribe to. To offset the base inequity intrinsic to investing, such a fund as this one discussed could offer low management fees or possibly free management and choose its stock holdings in such a way that the index fund price is affordable, or otherwise allows for fractional shares.
+
+\subsubsection{Price Prediction and Access}
+\label{sec:access}
+
+If this prediction algorithm is, in fact, highly accurate, price prediction poses follow-up questions:
+
+\begin{itemize}
+
+    \item Is it fair that only some have access to cryptocurrency market predictions?
+    \item Is it right to make cryptocurrency predictions widely available?
+    \item If cryptocurrency predictions are made widely available, will they alter cryptocurrency prices themselves, leading to ``false" or ``announcement-driven" outcomes?
+
+\end{itemize}
+
+There are many questions to be asked and contemplated beyond these. They lead me to believe that cryptocurrency price prediction can hold incredible harms, especially if kept exclusive with high subscription costs or made public to the point where the cryptocurrency predictions themselves alter the cryptocurrency prices, becoming a self-fulfilling cycle. \\
+
+I believe there is a use, if only in the context of research, to learn about the drivers of cryptocurrency prices through sentiment analysis and see their implications for investment holdings, even if the outcome decides solely that these tools are too powerful and should be kept unavailable to the public. \\
+
+That said, cryptocurrency price predictions aren't any more unethical than current practices. As it stands, the wealthier do have access to tools which help them invest smarter. This tool may not be ethical, but that isn't anything new to the world of investing.
+
+
+\section{Technical Background}
+\label{sec:technical}
+
+I propose to predict cryptocurrency prices using machine learning (ML) and sentiment analysis. Because, as previously mentioned, cryptocurrencies don’t have fundamentals, we must evaluate and try to predict their behavior using other metrics for input data. Here, I propose the use of sentiment analysis and current events data.
+
+\subsection{Sentiment Data}
+\label{sec:sentiment}
+
+Sentiment data is essentially the same as it sounds: it is data which signifies sentiment. Such sentiment, in this case, should convey feelings towards or about cryptocurrencies. This can take the form of news articles, social media posts, or other messaging. Such sentiment data will include, but is not limited to:
+
+\begin{itemize}
+    \item The number of positive and/or negative news articles about specific cryptocurrencies/cryptocurrency (as a concept) generally
+    \item The number of positive and/or negative social media posts about specific cryptocurrencies/cryptocurrency (as a concept) generally
+    \item The number of positive and/or negative crypto blog postings about specific cryptocurrencies/cryptocurrency (as a concept) generally
+
+\end{itemize}
+
+I plan to feed how many of each such posting there is in a given time period (to be determined) as the input data for my machine learning algorithm, with separate datapoints for post type, positive or negative, and specific to a given cryptocurrency or cryptocurrency generally. \\
+
+This list is not fully fleshed out yet. As I continue my project research, I plan to add more input datapoints to this suggested sentiment data input vector.
+
+\subsection{Current Events Data}
+\label{sec:currentevents}
+
+As we have seen recently with events in the Ukraine, current events have a strong impact on cryptocurrency prices. Accordingly, leaving them absent from cryptocurrency price predictions would be ill-advised. To train and maintain a machine learning model, however, we need to somehow quantify this data. The challenge here is \textit{how}. \\
+
+I propose, similarly, that we use sentiment to gauge world-events issues. I could add to this input vector of data datapoints which signal stress levels and financial concern with shifting scales, such as 1-5, where a one signifies low stress and a five signifies high stress.
+
+\subsection{Obtaining Data}
+\label{sec:dataacquisition}
+
+Now that we have determined which data to analyze, we must consider how this data will be acquired. Ideally, there would be preset datasets with this information. But, I have yet to find any with the breadth, depth, and upkeep necessary for such a machine learning algorithm to succeed. So, scraping is my preferred method for training and maintenance data acquisition. I don’t want my project to be about how to scrape data, rather I’d like to make this as painless as possible. To prevent scraping itself becoming a massive project, I plan to use existing libraries for help tackling this problem. \\
+
+\textbf{Potential Libraries (Python)}:
+
+\begin{itemize}
+    \item PyGoogleNews
+    \item NewsCatcher
+    \item FeedParser
+    \item NewsPaper3k
+\end{itemize}
+
+Cryptocurrencies are a global phenomenon, so we should not limit our scope of search to US-based sites. But, this is still a college project with limitations to its scope, so I plan to start with sourcing articles written in English from mostly US-based cites, but eventually (if time permits) broaden my scraping to more non-US websites and, potentially, other languages. \\
+
+I plan to narrow my list of sentiment data sources and scrape from these to get the training data and periodically retrieve classification data for price prediction. I suggest the following sources be tracked:
+
+\subsubsection{News Sources}
+\label{sec:newssources}
+
+\begin{enumerate}
+    \item The New York Times
+    \item The Economist
+    \item CNN
+\end{enumerate}
+
+\subsubsection{Social Media}
+
+\begin{enumerate}
+    \item Instagram
+    \item Facebook
+    \item Twitter
+\end{enumerate}
+
+\subsubsection{Crypto Blogs}
+
+\begin{enumerate}
+    \item Cointelegraph
+    \item NewsBTC
+    \item CryptoNinjas
+\end{enumerate}
+
+Most of these should be available to be openly viewed or have APIs which could be connected for scraping. This scraping would look for occurrences of each of the aforementioned datapoints and add them to an input vector, potentially spanning the course of a few hours to a week (time range to be decided).
+
+\subsection{Deciphering Sentiment}
+\label{sec:deciphering}
+
+To decipher sentiment, I will use an existing natural language processing (NLP) algorithm. \\
+
+\textbf{Possible Algorithms (Python)}:
+
+\begin{enumerate}
+    \item NLTK (Natural Language Toolkit)
+    \item SpaCy
+    \item TextBlob
+    \item Stanford CoreNLP
+    \item Gensim
+\end{enumerate}
+
+\subsection{Sequential Support Vector Machine}
+\label{sec:sequentialSVM}
+
+A support vector machines (SVM) is a type of machine learning algorithm which allows for linear classification of input data. SVMs are supervised learning models which take a training set with output data marked as one of two categories. Support vector machines look for a 1-dimensional line or hyper-plane that separates the two classes, with the ``best" dividing line being that which separates them right in the middle, known as the \textbf{decision boundary}. As such, SVMs maximize the distance between the two outcomes so as to classify new input data into one of these two groups.
+
+\subsubsection{Derivation}
+\label{sec:derivation}
+
+In the 1-dimensional case, a dividing line would take the form:
+
+\[ y = ax + b \]
+
+where a is the slope, b is the y-intercept, and x is the input data.
+
+If we replace x with $x_1$ and y with $x_2$ and define \textbf{x} = $(x_1, x_2)$ and \textbf{w} = $(a, -1)$, this equation simplifies to the hyperplane equation:
+
+\[w \cdot x + b = 0 \]
+
+With this hyperplane equation, we derive predictions using points above and below the hyperplane. This holds for our multidimensional situation, where w is our vector for our input data. Points above the hyperplane are given the value +1 and points below the hyperplane are given the value -1:
+
+$$
+h(x_i) =
+\begin{cases}
+    +1,& \text{if } w \cdot x + b \geq 0 \\
+    -1,& \text{if } w \cdot x + b < 0
+\end{cases}
+$$
+
+To find the ``best" hyperplane, we must find the hyperplane with the greatest margin, as previously mentioned. First, we define \textbf{f} $ = y(w \cdot x + b)$, so that the sign of f is positive if the data is correctly classified and negative otherwise, and divide this by the length of our w vector, to get:
+
+\[ \gamma = y\bigg(\frac{w}{||w||}\cdot x + \frac{b}{||w||} \bigg) \text{.} \]
+
+For each datapoint in our training dataset, we calculate this $\gamma$ value, and minimize it to find $M$, the \textit{geometric margin}:
+
+\[ M = \text{min } y_i \bigg( \frac{w}{||w||} \cdot x + \frac{b}{||w||} \bigg) \text{   for } i=1...m \text{.} \]
+
+Our ``best" hyperplane will be that were $M$ is maximized. To get the w and b values which maximize $M$, we must solve the optimization problem:
+
+\[ \text{max } M = \text{max } \frac{f}{||w||} = \text{max } \frac{1}{||w||} = \text{min } ||w|| = \text{min } \frac{1}{2}||w||^2 \text{   for } f_i \geq 1, i=1...m \text{.} \]
+
+We have turned our maximization problem into a minimization one, which is easier to solve. \\
+
+We can now use Lagrangian multipliers to solve for w and b. We will not finish this derivation here, but you can learn more at \href{https://shuzhanfan.github.io/2018/05/understanding-mathematics-behind-support-vector-machines/}{Understanding the mathematics behind Support Vector Machines}, from which this derivation was based off of.
+
+\subsubsection{Sequential SVMs}
+\label{sec:sequencing}
+
+As I have demonstrated, SVMs allow for the classification of data into two groups. However, my project aims to predict the price of cryptocurrencies, which is continuous rather than discretely divided. So, I propose using sequential support vector machines to continuously group data into one of two cases, allowing for many more outcomes. Essentially, we would set up a series of support vector machines which, at each step, classify the input data into one of two groups. First, the data would be classified into two groups: rising cryptocurrency price and falling cryptocurrency price. Next, those classified as rising or falling would be split separately into ``rising a lot" versus ``rising a little" or ``falling a lot" versus ``falling a little", and so on and so forth. This would need to be quantified somehow, so that ``a lot" or ``a little" is represented by some percentage, such as a 1\% increase or decrease in price. We could add in an error estimate as well for further safety in cryptocurrency price predictions and their weight on the cryptocurrency index fund trading algorithm decisions. In this way, we could get more detailed insight on the predicted price of a cryptocurrency. \\
+
+Since we wish to predict the price of each cryptocurrency individually to rebalance our index fund, this sequential SVM would be run individually on each coin. The predictions from these sequential SVMs would then be passed to our trading algorithm (described later under \hyperref[sec:rebalancing]{Rebalancing Trading Algorithm}). \\
+
+A few questions remain: \textit{Where do we draw the lines between sequential SVMs? Should we choose a percentage of increase or decrease?} I don't know the answers to these questions, but I plan to research more and play around with the results as I further pursue this project.
+
+
+\subsubsection{Useful Libraries}
+\label{sec:sequentialSVMlibraries}
+
+I am currently taking Machine Learning, where we are self-implementing these algorithms, so I am strongly considering coding these sequential SVMs myself. However, this might prove more difficult than I am imagining, so I am also prepared to use already existing libraries for the bulk of this work. \\
+
+\textbf{Potential Libraries (Python)}:
+
+\begin{itemize}
+    \item Scikit-learn
+    \item LIBSVM
+    \item ThunderSVM
+\end{itemize}
+
+
+\subsection{Support Vector Clustering Algorithm}
+\label{sec:SVMclustering}
+
+My second thought is to use a support vector clustering algorithm to look for natural clustering in the data rather than assume sentiment analysis is the key deciding factor. A support vector clustering algorithm model is an example of unsupervised machine learning. Rather than be told what causes surges or declines in cryptocurrency prices, it will look for such natural clustering in unlabeled data to identify and predict future cryptocurrency prices.
+
+This second method would serve as an interesting point of comparison to the sequential SVMs to note if our suggested sentiment analysis is viable or a poor predictor for cryptocurrency prices. \\
+
+\textbf{Potential Libraries (Python)}:
+
+The \hyperref[sec:sequentialSVMlibraries]{same libraries} suggested for the sequential SVMs approach can be used for the support vector clustering algorithm approach.
+
+
+\subsection{LSTM Neural Networks}
+\label{sec:LSTM}
+
+The other thought I have, which could replace or compliment the use of support vector machines, is using Long Short-Term Memory (LSTM) networks. These networks learn order dependence for prediction problems, which is especially useful for something like stocks where order and history are relevant. \\
+
+LSTMs are an example of a working recurrent neural network. In some situations we need a lot of context, while in other cases we need only to know what previously happened. LSTMs solve this problem by deciding when to keep and/or use what information. Specifically, LSTMs were developed as a subtype of recurrent neural networks (RNNs) to avoid the problem of depending on outdated inputs. \\
+
+At each step in the network, a message is passed to the successor step. Rather than throw away previous training input, LSTMs, or rather recurrent neural networks, use previous events to inform coming ones with loops. But, rather than hold onto its training data forever, these recurrent neural networks hold onto input information dependent on the input data weight. It is more fluid than traditional neural networks in its ability to contextually choose relevant information. \\
+
+To learn more about why LSTMs are useful, how they work, and the mathematics behind them, visit this blog post: \href{https://colah.github.io/posts/2015-08-Understanding-LSTMs/}{Understanding LSTM Networks}. \\
+
+\textbf{Potential Libraries (Python)}:
+
+\begin{itemize}
+    \item TensorFlow
+    \item PyTorch
+    \item NeuroLab
+    \item Scikit-Neural Network
+\end{itemize}
+
+\subsection{Implementation}
+\label{sec:implementation}
+
+\subsubsection{Choosing an NLP Algorithm}
+\label{sec:choosingNLP}
+
+First off, I believe it is important to use a few NLP algorithms on scraped data to see and evaluate their results. Based on evaluation of these, I will decide the best NLP algorithm to use for finding sentiment data. If there are a few contenders, I propose building a cryptocurrency price prediction model for each one and evaluating their outputted results.
+
+\subsubsection{ML Algorithms}
+\label{sec:MLalgorithms}
+
+I don't know which of the three proposed machine learning algorithms will perform best for cryptocurerncy price prediction, so I am planning to attempt all three and compare their results, potentially building a few models for each with the chosen NLP algorithm(s).
+
+\subsection{Rebalancing Trading Algorithm}
+\label{sec:rebalancing}
+
+There are many ways to rebalance an index fund. The usual choice is \textbf{calendar rebalancing}. In calendar rebalancing, the index fund holdings are reviewed on a preset calendar basis and adjusted to their original form. The actual rebalancing is done by examining issues such as transaction costs and drifts. \\
+
+However, my choice of rebalancing would be a mixture of calendar rebalancing and \textbf{percentage-of-portfolio rebalancing}. Basically, every given period of time deciphered by my ML algorithms as ideal (i.e. when prices are dramatically changing), I would rebalance the portfolio to mitigate risk but maximize profits with percentage-of-portfolio rebalancing.
+
+\subsection{Evaluation}
+\label{sec:evaluation}
+
+To evaluate the success of these models, I plan to feed the models data from after the training period and compare the outputted cryptocurrency price prediction results against the actual cryptocurrency prices from that time to see if the ML models succeeded. \\
+
+To evaluate the success of the cryptocurrency index fund itself, I will compare the year-to-date (YTD) success of the machine learning index fund(s) - potentially multiple funds based on different NLP algorithms, ML algorithms, and training datasets - with the YTD success of common cryptocurrency index funds (i.e. ProShares Bitcoin Strategy ETF, Grayscale Bitcoin Trust, Bitwise 10 Crypto Index Fund...). \\
+
+Based on how each model performed, we can answer some follow up questions to maximize the accuracy of the cryptocurrency price prediction algorithms and index fund:
+
+\begin{itemize}
+    \item How did each perform?
+    \item Should we use on or another cryptocurrency price prediction solely to inform the cryptocurrency index fund trading algorithm?
+    \item Should we average out the cryptocurrency price predictions from the three machine learning approaches to build the cryptocurrency index fund?
+\end{itemize}
+
+
+\subsection{Coding Details}
+\label{sec:coding}
+
+As previously hinted, for this project I will code in Python and use PyCharm as my integrated development environment (IDE). Python is my language of choice for its abundant scraping and machine learning libraries/tools in addition to its simplicity of use.
+
+
+\section{Prior Work}
+\label{sec:priorwork}
+
+\subsection{Forecasting and trading cryptocurrencies with machine learning under changing market conditions}
+
+This article, \href{https://jfin-swufe.springeropen.com/articles/10.1186/s40854-020-00217-x}{Forecasting and trading cryptocurrencies with machine learning under changing market conditions}, closely aligns with the aims of my project. Rather than apply these predictions to a fund with great range in cryptocurrencies, this research paper instead focuses on examining the predictability of three major contenders: bitcoin, ethereum, and litecoin. Moreover, they focus on times of extreme upheaval and use linear models. They used three ML models - linear models, random forests, and support vector machines - for their predictive work. Of the 18 models they built, 13 models had a success rate over 50\%, affirming the promise of ML algorithms for cryptocurrency stock price prediction. In their introduction, they explain the proposal of sentiment analysis for stock price prediction, which is what motivated me to choose the same for my project.
+
+\subsection{LSTM-based Sentiment Analysis for Stock Price Forecast}
+
+A favorite research paper I found was \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7959635/}{LSTM-based sentiment analysis for stock price forecast}. Similar to what I propose to do, this paper uses a long short-term memory neural network with text sentiments and historical stock transactions to predict stock prices. This paper argues in its introduction the importance of aggressive investing strategies and, hence, the usefulness of accurate stock trend forecasting. They use fundamental analysis and technical analysis to forecast stock prices in addition to an LSTM, which was applied to this forecasting. \\
+
+Using text sentiment from blog articles, social media, online forum posts, and product reviews, the authors aimed to understand online public opinions. They used an existing NLP algorithm (BERT) to classify the texts into sentiment categories by counting the emotional words that appear in a given sentence, then calculating a score for each emotional word, and, with these individual scores, output the condition of the sentence. Further, this article addressing preprocessing of data to get it into a form where it can be passed to the ML algorithm, which is very useful for me to apply to my own product algorithm. \\
+
+To evaluate their results, the authors created four different forecast models based on different training data and evaluated them using root mean square error (RMSE). From their work, a clear improvement was drawn, up 12.05\%.
+
+\subsection{Algorithmic Trading}
+
+\subsubsection{Mean-Variance Optimization}
+
+In the Medium article \href{https://towardsdatascience.com/algorithmic-trading-based-on-mean-variance-optimization-in-python-62bdf844ac5b}{Algorithmic trading based on mean-variance optimization in Python}, Markowitz's portfolio optimization (MPT) and the Modern Portfolio Theory are implemented in python as trading strategies with the \hl{zipline} library. The general goal of MPT is maximize returns while minimizing risk. That said, this method ignores transaction costs, which, for an index fund, do need to be considered. \\
+
+In this trading algorithm, short-selling is not allowed. However, with my suggested index fund, we might want to allow short-selling. The work presented in this article does allow for rebalancing on a given schedule, which I could utilize to set a schedule based on the ML outputs.
+
+\subsubsection{Constant Rebalanced Portfolios}
+
+A more likely approach I will take is implementing a \textit{constant rebalanced portfolio}, achieved in this blog post: \href{https://www.chrisstucchio.com/blog/2015/constant_rebalanced_portfolios.html}{Constant Rebalanced Portfolios - some simulations with numpy}. The idea explained in this article is: \\
+
+Say we have three stocks, and we believe each will perform equally well, so we split our money in three, making our holdings $\{1/3, 1/3, 1/3\}$. Let's say one of these three stocks does significantly better than the rest, making our holdings: $\{1/2, 1/4, 1/4\}$. The idea here is we believe this disproportionate return was just chance, and so we sell off some of this stock and rebalance to our original $\{1/3, 1/3, 1/3\}$. \\
+
+With my index fund, what we might say is: \\
+
+Stock A is planned to increase in price, so let's buy a lot of it before it has increased. Once it has increased, let's sell it off and regain our original balance.
+
+
+\end{document}
